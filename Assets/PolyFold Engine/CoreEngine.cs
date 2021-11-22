@@ -124,7 +124,7 @@ public class CoreEngine
 		{
 			Vector2 interPos = Bodies[i].PrevPosition * (1.0f - alpha) + Bodies[i].Position * alpha;
 			//Debug.Log(interPos.y + " " + Bodies[i].PrevPosition.y + " " + Bodies[i].Position.y + " " + alpha.ToString() + " " + Time.time);
-			//Bodies[i].Shape.Draw(interPos);
+			Bodies[i].Shape.Draw(interPos);
 			Bodies[i].Object.transform.position = interPos;
 		}
 	}

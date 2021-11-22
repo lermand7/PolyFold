@@ -9,6 +9,8 @@ public class PolyFoldObject : MonoBehaviour
     public bool isStatic;
 
     [HideInInspector]
+    public float Density = 1;
+    [HideInInspector]
     public float Mass;
     [HideInInspector]
     public float StaticFriction = 0.6f;
@@ -22,9 +24,10 @@ public class PolyFoldObject : MonoBehaviour
     public void AttachBody(Body body)
     {
         Body = body;
-        if(Body.Mass == 0)
+
+        if(Density != 1)
         {
-            Mass = Body.Mass;
+            Body.Shape.ComputeMass(Density);
         }
 
         if(isStatic)
@@ -32,6 +35,7 @@ public class PolyFoldObject : MonoBehaviour
             Body.SetStatic();
         }
 
+        Mass = Body.Mass;
     }
 }
 
@@ -45,6 +49,9 @@ public class Object_Editor : Editor
         PolyFoldObject script = (PolyFoldObject)target;
 
         EditorGUI.BeginDisabledGroup(script.isStatic);
+        script.Density = EditorGUILayout.FloatField("Density", script.Density);
+        EditorGUI.EndDisabledGroup();
+        EditorGUI.BeginDisabledGroup(true);
         script.Mass = EditorGUILayout.FloatField("Mass", script.Mass);
         EditorGUI.EndDisabledGroup();
         script.StaticFriction = EditorGUILayout.FloatField("StaticFriction", script.StaticFriction);
@@ -59,9 +66,9 @@ public class Object_Editor : Editor
             }
             else
             {
-                script.Body.Shape.Initialize();
+                script.Body.Shape.ComputeMass(script.Density);
             }
-            script.Body.Mass = script.Mass;
+            script.Mass = script.Body.Mass;
             script.Body.StaticFriction = script.StaticFriction;
             script.Body.DynamicFriction = script.DynamicFriction;
             script.Body.Restitution = script.Restitution;

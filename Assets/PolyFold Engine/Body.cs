@@ -54,6 +54,12 @@ public class Body
 
 	public void SetStatic()
 	{
+		Velocity.Set(0, 0);
+		AngularVelocity = 0;
+
+		PrevPosition = Object.transform.position;
+		Position = Object.transform.position;
+
 		Inertia = 0.0f;
 		InvInertia = 0.0f;
 		Mass = 0.0f;

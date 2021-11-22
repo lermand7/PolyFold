@@ -50,8 +50,6 @@ public class Circle : Shape
 		Body.InvMass = (Body.Mass != 0.0f) ? 1.0f / Body.Mass : 0.0f;
 		Body.Inertia = Body.Mass * Radius * Radius;
 		Body.InvInertia = (Body.Inertia != 0.0f) ? 1.0f / Body.Inertia : 0.0f;
-
-		Body.Object.Mass = Body.Mass;
 	}
 
 	public override void SetOrient(float radians)
