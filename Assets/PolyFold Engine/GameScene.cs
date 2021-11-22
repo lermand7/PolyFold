@@ -10,6 +10,8 @@ public class GameScene : MonoBehaviour
 
     public float Hertz;
 
+    public bool RenderHitBox;
+
 	private float Accumulator;
     private float FrameStart;
 
@@ -66,7 +68,7 @@ public class GameScene : MonoBehaviour
 
         float alpha = Accumulator / PolyFold.Dt;
 
-        PolyFold.Render(alpha);
+        PolyFold.Render(alpha, RenderHitBox);
 
         PolyFold.Dt = 1.0f / Hertz;
     }

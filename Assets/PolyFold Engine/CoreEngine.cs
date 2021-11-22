@@ -66,10 +66,10 @@ public class CoreEngine
 			integrateVelocity(Bodies[i], Dt);
 		}
 
-		/*for (int i = 0; i < Contacts.Count; ++i)
+		for (int i = 0; i < Contacts.Count; ++i)
 		{
 			Contacts[i].positionalCorrection();
-		}*/
+		}
 
 		for (int i = 0; i < Bodies.Count; ++i)
 		{
@@ -118,13 +118,22 @@ public class CoreEngine
 		integrateForces(b, dt);
 	}
 
-	public void Render(float alpha)
+	public void Render(float alpha, bool Render)
     {
 		for (int i = 0; i < Bodies.Count; ++i)
 		{
 			Vector2 interPos = Bodies[i].PrevPosition * (1.0f - alpha) + Bodies[i].Position * alpha;
 			//Debug.Log(interPos.y + " " + Bodies[i].PrevPosition.y + " " + Bodies[i].Position.y + " " + alpha.ToString() + " " + Time.time);
-			Bodies[i].Shape.Draw(interPos);
+			if(Render)
+            {
+				Bodies[i].Renderer.enabled = true;
+				Bodies[i].Shape.Draw(interPos);
+			}
+            else
+            {
+				Bodies[i].Renderer.enabled = false;
+
+			}
 			Bodies[i].Object.transform.position = interPos;
 		}
 	}

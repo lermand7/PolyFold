@@ -9,7 +9,7 @@ public class PolyFoldObject : MonoBehaviour
     public bool isStatic;
 
     [HideInInspector]
-    public float Density = 1;
+    public float Density = 0.2f;
     [HideInInspector]
     public float Mass;
     [HideInInspector]

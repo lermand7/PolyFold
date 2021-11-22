@@ -64,7 +64,7 @@ public class Circle : Shape
 		int size = (int)sizeValue;
 		size++;
 
-		Body.Renderer.material =  new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
+		Body.Renderer.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
 		Body.Renderer.startWidth = 0.1f;
 		Body.Renderer.endWidth = 0.1f;
 		Body.Renderer.positionCount = size;
